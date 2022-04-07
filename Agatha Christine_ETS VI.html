@@ -1,0 +1,146 @@
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <center><title>Agatha Christine Gunawan - 06311940000032</title>
+    <h1>ETS Visualisasi Informasi (Bubble Chart)</h1>
+    <p>Agatha Christine Gunawan - 06311940000032</p></center>
+</head>
+<style>
+    body { background-color: #fdceb9; color: #f76e11;  width: 75%;
+  height: 700px;}
+    
+</style>
+
+<body>
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script>
+        const data = {
+            datasets: [{
+                label: 'Public',
+                data: [{
+                    faculty: 5399,
+                    international: 6201,
+                    r: 7
+                }, {
+                    x: 6140,
+                    y: 4487,
+                    r: 11
+                }, {
+                    x: 10827,
+                    y: 3876,
+                    r: 15
+                }, {
+                    x: 9428,
+                    y: 3701,
+                    r: 19
+                }, {
+                    x: 27536,
+                    y: 9881,
+                    r: 23
+                }, {
+                    x: 7341,
+                    y: 7132,
+                    r: 27
+                }],
+                borderColor: '#ff9f45',
+                backgroundColor: '#ff9f45'
+            },{
+                label: 'Private',
+                data: [{
+                    x: 3445,
+                    y: 5673,
+                    r: 7
+                }, {
+                    x: 3846,
+                    y: 3652,
+                    r: 11
+                }, {
+                    x: 11252,
+                    y: 7087,
+                    r: 15
+                }, {
+                    x: 2537,
+                    y: 5391,
+                    r: 19
+                }, {
+                    x: 1912,
+                    y: 1050,
+                    r: 23
+                }, {
+                    x: 692,
+                    y: 968,
+                    r: 27
+                }],
+                borderColor: '#fc4f4f',
+                backgroundColor: '#fc4f4f'
+            }]
+        };
+       
+        let delayed;
+const config = {
+  type: 'bubble',
+  data: data,
+  options: {
+    plugins: {
+      title: {
+        display: true,
+        text: 'Perbandingan Universitas Negeri dan Swasta dari 12 Besar QS-WCU 2021',
+      }
+    },
+    animation: {
+      onComplete: () => {
+        delayed = true;
+      },
+      delay: (context) => {
+        let delay = 0;
+        if (context.type === 'data' && context.mode === 'default' && !delayed) {
+          delay = context.dataIndex * 300 + context.datasetIndex * 100;
+        }
+        return delay;
+      },
+    },
+    scales: {
+      x: {
+        display: true,
+        title:{
+            display:true,
+            text: 'International Students',
+            font:{
+                weight:'bold',
+                line: 1.2
+            },
+            padding: {top: 20, left: 0, right: 0, bottom: 0 }
+        },
+        stacked: true,
+      },
+      y: {
+        display: true,
+        title:{
+            display:true,
+            text: 'Faculty Count',
+            font:{
+                weight:'bold',
+                line: 1.2
+            },
+            padding: {top: 20, left: 0, right: 0, bottom: 0 }
+        },
+        stacked: true,
+      }
+    }
+  }
+};
+    </script>
+    <script>
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+    </script>
+
+</body>
+
+</html>
